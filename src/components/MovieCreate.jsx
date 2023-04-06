@@ -10,6 +10,7 @@ const MovieCreate = ({ onCreate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onCreate(title);
+    setTitle("");
   };
 
   return (
