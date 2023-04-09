@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MovieEdit from "./MovieEdit";
+import useMovieContext from "../hooks/use-movie-context";
 
-const MovieShow = ({ movie, onDelete, onEdit }) => {
+const MovieShow = ({ movie }) => {
   const [showEdit, setShowEdit] = useState(false);
+  const { deleteMovie } = useMovieContext();
 
   const handleDeleteClick = () => {
-    onDelete(movie.id);
+    deleteMovie(movie.id);
   };
 
   const handleEditClick = () => {
@@ -14,7 +16,6 @@ const MovieShow = ({ movie, onDelete, onEdit }) => {
 
   const handleSubmit = (id, newTitle) => {
     setShowEdit(false);
-    onEdit(id, newTitle);
   };
 
   let content = <h3>{movie.title}</h3>;

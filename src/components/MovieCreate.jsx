@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import useMovieContext from "../hooks/use-movie-context";
 
-const MovieCreate = ({ onCreate }) => {
+const MovieCreate = () => {
   const [title, setTitle] = useState("");
+  const { creatMovie } = useMovieContext();
 
   const hadleChange = (event) => {
     setTitle(event.target.value);
@@ -9,13 +11,13 @@ const MovieCreate = ({ onCreate }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onCreate(title);
+    creatMovie(title);
     setTitle("");
   };
 
   return (
     <div className="movie-create">
-      <form className="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h3>Add a Movie</h3>
         <label>Title</label>
         <input className="input" value={title} onChange={hadleChange} />
