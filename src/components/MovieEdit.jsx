@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import useMovieContext from "../hooks/use-movie-context";
 
 const MovieEdit = ({ movie, onSubmit }) => {
   const [title, setTitle] = useState(movie.title);
+
+  const { editMovie } = useMovieContext();
 
   const hadleChange = (event) => {
     setTitle(event.target.value);
@@ -9,7 +12,8 @@ const MovieEdit = ({ movie, onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(movie.id, title);
+    onSubmit();
+    editMovie(movie.id, title);
   };
   return (
     <form onSubmit={handleSubmit} className="book-edit">

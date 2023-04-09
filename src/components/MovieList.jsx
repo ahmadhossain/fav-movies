@@ -1,9 +1,11 @@
-import React from "react";
+import useMovieContext from "../hooks/use-movie-context";
 import MovieShow from "./MovieShow";
 
-const MovieList = ({ movies, onDelete, onEdit }) => {
+const MovieList = () => {
+  const { movies } = useMovieContext();
+
   const renderedMovies = movies.map((movie) => (
-    <MovieShow movie={movie} onDelete={onDelete} onEdit={onEdit} />
+    <MovieShow key={movie.id} movie={movie} />
   ));
 
   return <div className="movie-list">{renderedMovies}</div>;
